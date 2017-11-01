@@ -1,0 +1,28 @@
+<div>Dealers Hand:</div>
+<div *ngIf="!showdown">
+    <span>{{dealer.hand[0].value}} of {{dealer.hand[0].suit}}</span><br>
+    <span>Hole card</span>
+</div>
+<div *ngIf="showdown">
+    
+    <div *ngFor="let card of dealer.hand">
+            {{card.value}} of {{card.suit}}
+    </div>
+    <span style="color:red">Dealer has {{dealer.count}}</span>
+</div>
+<br/>
+<div>Players Hand:</div>
+<div *ngFor="let card of player.hand">
+    {{card.value}} of {{card.suit}}
+</div>
+<div style="color:red">
+    <span >Player at {{player.points}}<span *ngIf="player.showSoft"> or {{player.softPoints}}</span></span>
+</div><br/>
+<div style="color:red">{{console}}</div>
+<div *ngIf="!player.bust && !showdown">
+    <button (click)="playerHit()">HIT</button> <button (click)="stay()">STAY</button>
+</div>
+<div *ngIf="player.bust || showdown">
+    <button (click)="reset()">RESET</button>
+</div>
+
